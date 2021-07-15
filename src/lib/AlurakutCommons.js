@@ -166,11 +166,11 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
   return (
     <div className="alurakutMenuProfileSidebar">
       <div>
-        <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
+        <img src={`https://i.pinimg.com/280x280_RS/d0/1c/9f/d01c9f1e289757b3cb6949c86f9125b4.jpg`} style={{ borderRadius: '8px', height: '400px'}} />
         <hr />
         <p>
           <a className="boxLink" href={`/user/${githubUser}`}>
-            @{githubUser}
+            @{`bebelicha`}
           </a>
         </p>
         <hr />
@@ -229,7 +229,7 @@ AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
     justify-content: flex-start;
     text-decoration: none;
     img {
-      width: 16px;
+      width: 20px;
       height: 16px;
       margin-right: 5px; 
     }
@@ -262,7 +262,7 @@ export function OrkutNostalgicIconSet(props) {
       {[
         { name: 'Confiável', slug: 'confiavel', icon: 'smile' },
         { name: 'Legal', slug: 'legal', icon: 'cool' },
-        { name: 'Sexy', slug: 'sexy', icon: 'heart' },
+       
       ].map(({ name, slug, icon }) => {
         const total = props[slug] ? props[slug] : 1;
         return (

@@ -22,7 +22,27 @@ function ProfileSidebar(propriedades) {
     </Box>
   )
 }
-
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+        {/* {seguidores.map((itemAtual) => {
+          return (
+            <li key={itemAtual}>
+              <a href={`https://github.com/${itemAtual}.png`}>
+                <img src={itemAtual.image} />
+                <span>{itemAtual.title}</span>
+              </a>
+            </li>
+          )
+        })} */}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
 export default function Home() {
   const usuarioAleatorio = 'bebelicha';
   const [comunidades, setComunidades] = React.useState([{
@@ -51,19 +71,19 @@ export default function Home() {
       
     },
     {
-      id: '12802378123789378912789789123896123', 
+      id: '128023781237893789127897891238961234', 
       title: 'Karen Smith',
       image: 'https://img.wattpad.com/fde2f99db019e54532c810ae2e54683d0eade7f2/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5549306f42474832316248485a413d3d2d3538383039363934372e313533373561376434643562626330313334323133363738313430312e6a7067',
       
     },
     {
-      id: '12802378123789378912789789123896123', 
+      id: '128023781237893789127897891238961235', 
       title: 'Gretchen Wieners',
       image: 'https://img.wattpad.com/2bd12702e08601a24eef37910b147867b7bcc0a1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f36425f4c4e3564523968736759413d3d2d3538383039363934372e313533373561376536636162333639633638353138313731323132342e6a7067',
       
     },
     {
-      id: '12802378123789378912789789123896123', 
+      id: '128023781237893789127897891238961236', 
       title: 'Regina George',
       image: 'https://img.wattpad.com/1b6f8ed06d5606a5fd707706ca12300a3b863aaa/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f6f4d66543274475f5a64435046773d3d2d3538383039363934372e313533373561376662653466643065313130363636353336343534372e6a7067',
       
@@ -76,7 +96,27 @@ export default function Home() {
   //  'omariosouto'
   
   ]
+  
+  const seguimores = `https://api.github.com/users/${usuarioAleatorio}/followers`;
+  const [seguidores, setSeguidores] = React.useState([]);
+  // 0 - Pegar o array de dados do github 
+  React.useEffect(function() {
+    fetch(seguimores)
+    .then(function (respostaDoServidor) {
+      return respostaDoServidor.json();
+    })
+    .then(function(respostaCompleta) {
+      setSeguidores(respostaCompleta);
+      console.log('rc',respostaCompleta);
+    })
+  }, [])
 
+  console.log('seguidores antes do return', seguidores);
+
+  
+
+  // 1 - Criar um box que vai ter um map, baseado nos items do array
+  // que pegamos do GitHub
   return (
     <>
       <AlurakutMenu />
@@ -134,7 +174,12 @@ export default function Home() {
           </Box>
         </div>
         <div className="profileRelationsArea" style={{ gridArea: 'profileRelationsArea' }}>
+        <ProfileRelationsBox title="Seguidores" items={seguidores}> 
+                
+        </ProfileRelationsBox>
+       
           <ProfileRelationsBoxWrapper>
+            
             <h2 className="smallTitle">
               Comunidades ({comunidades.length})
             </h2>
